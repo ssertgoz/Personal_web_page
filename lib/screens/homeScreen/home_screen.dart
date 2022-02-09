@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:personal_web_app/constants/colors.dart';
 import 'package:personal_web_app/extension.dart';
 import 'package:personal_web_app/responsive.dart';
+import 'package:personal_web_app/screens/other/personal_info_screen.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -15,11 +16,44 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   List<bool> onHower = [false, false, false, false, false];
+  final ItemScrollController itemScrollController = ItemScrollController();
+  final ItemPositionsListener itemPositionsListener =
+      ItemPositionsListener.create();
+
+  final List<Widget> screens = [
+    const PersonalInfoScreen(),
+    Container(
+      height: Get.height,
+      width: Get.width,
+    ),
+    Container(
+      height: Get.height,
+      width: Get.width,
+    ),
+    Container(
+      height: Get.height,
+      width: Get.width,
+    ),
+    Container(
+      height: Get.height,
+      width: Get.width,
+    )
+  ];
+
+  int currenntScrollIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: buildBody(),
     );
+  }
+
+  jumpTo(index) {
+    itemScrollController.scrollTo(
+        index: index,
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.easeInOutCubic);
   }
 
   Widget buildBody() {
@@ -41,107 +75,12 @@ class _HomeScreenState extends State<HomeScreen> {
       children: [
         ScrollablePositionedList.builder(
             //TODO burdaki sayıyı getx kullanarak otomatik olarak al
-            itemScrollController: null,
+            itemScrollController: itemScrollController,
             scrollDirection: Axis.horizontal,
             physics: const NeverScrollableScrollPhysics(),
             itemCount: 5,
-            itemBuilder: (context, index) {
-              return Container(
-                margin: const EdgeInsets.only(bottom: 15),
-                height: Get.height,
-                width: Get.width,
-                child: Stack(
-                  alignment: Alignment.centerRight,
-                  children: [
-                    Container(
-                        height: Get.height,
-                        width: Get.width,
-                        color: customWhiteColor),
-                    Opacity(
-                      opacity: 1,
-                      child: Container(
-                          decoration: BoxDecoration(
-                            color: customLightOrageColor,
-                            image: const DecorationImage(
-                                fit: BoxFit.cover,
-                                image:
-                                    AssetImage("assets/images/landscape.png")),
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(Get.width),
-                              topRight: Radius.circular(Get.width),
-                            ),
-                          ),
-                          child: null),
-                    ),
-                    Align(
-                      alignment: Alignment.topCenter,
-                      child: Column(
-                        children: [
-                          Container(
-                            margin: EdgeInsets.all(Get.height * 0.05),
-                            decoration: BoxDecoration(
-                                color: Colors.white.withOpacity(0.8),
-                                shape: BoxShape.circle,
-                                boxShadow: const [
-                                  BoxShadow(
-                                      color: Colors.black54,
-                                      offset: Offset(0, 0),
-                                      blurRadius: 25,
-                                      spreadRadius: 0.2)
-                                ],
-                                image: const DecorationImage(
-                                    fit: BoxFit.fitWidth,
-                                    image: AssetImage(
-                                        "assets/images/profile_pic.png"))),
-                            height: Get.height * 0.5,
-                            width: Get.height * 0.5,
-                            child: null,
-                          ),
-                          Container(
-                            height: Get.height * 0.1,
-                            width: Get.width * 0.3,
-                            decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                              colors: [
-                                Colors.white.withOpacity(0.0),
-                                Colors.black.withOpacity(0.4),
-                                Colors.black.withOpacity(0.4),
-                                Colors.white.withOpacity(0.0),
-                              ],
-                              stops: const [
-                                0.0,
-                                0.2,
-                                0.8,
-                                1,
-                              ],
-                            )),
-                            alignment: Alignment.center,
-                            child: Text(
-                              "Serdar Sertöz",
-                              style: TextStyle(
-                                  color: customWhiteColor,
-                                  fontSize: Get.height * 0.09,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                          Container(
-                            height: Get.height * 0.05,
-                            width: Get.width * 0.3,
-                            alignment: Alignment.center,
-                            child: Text(
-                              "Computer Engineer",
-                              style: TextStyle(
-                                  color: customWhiteColor.withOpacity(0.6),
-                                  fontSize: Get.height * 0.03,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              );
+            itemBuilder: (context, scrollIndex) {
+              return screens[scrollIndex];
             }),
         Container(
             height: Get.height,
@@ -166,45 +105,62 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: List.generate(5, (index) {
-                    return InkWell(
-                      onTap: () {},
-                      onHover: (oh) {
-                        if (oh) {
+                    return Container(
+                      margin: EdgeInsets.all(10),
+                      child: InkWell(
+                        onTap: () {
                           setState(() {
-                            onHower[index] = true;
+                            currenntScrollIndex = index;
+                            jumpTo(index);
                           });
-                        } else {
-                          setState(() {
-                            onHower[index] = false;
-                          });
-                        }
-                      },
-                      child: Container(
-                        margin: EdgeInsets.all(10),
-                        width: Get.width * 0.08,
-                        height: Get.height * 0.05,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                          colors: [
-                            Colors.white.withOpacity(0.0),
-                            Colors.white
-                                .withOpacity(onHower[index] ? 0.4 : 0.2),
-                            Colors.white.withOpacity(0.0),
-                          ],
-                          stops: const [
-                            0.0,
-                            0.5,
-                            1,
-                          ],
-                        )),
-                        child: Text("Page " + index.toString(),
-                            style: TextStyle(
-                                color: onHower[index]
-                                    ? customWhiteColor.withOpacity(1)
-                                    : customWhiteColor.withOpacity(0.3),
-                                fontSize: Get.height * 0.02,
-                                fontWeight: FontWeight.bold)),
+                        },
+                        onHover: (oh) {
+                          if (oh) {
+                            setState(() {
+                              onHower[index] = true;
+                            });
+                          } else {
+                            setState(() {
+                              onHower[index] = false;
+                            });
+                          }
+                        },
+                        child: Container(
+                          width: Get.width * 0.08,
+                          height: Get.height * 0.05,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                              // boxShadow: const [
+                              //   BoxShadow(
+                              //       color: Colors.black54,
+                              //       offset: Offset(0, 0),
+                              //       blurRadius: 15,
+                              //       spreadRadius: 0.2)
+                              // ],
+                              gradient: LinearGradient(
+                            colors: [
+                              Colors.white.withOpacity(0.0),
+                              Colors.white.withOpacity(
+                                  onHower[index] || currenntScrollIndex == index
+                                      ? 0.4
+                                      : 0.2),
+                              Colors.white.withOpacity(0.0),
+                            ],
+                            stops: const [
+                              0.0,
+                              0.5,
+                              1,
+                            ],
+                          )),
+                          child: Text("Page " + index.toString(),
+                              style: TextStyle(
+                                  color: onHower[index] ||
+                                          currenntScrollIndex == index
+                                      ? customWhiteColor.withOpacity(1)
+                                      : customWhiteColor.withOpacity(0.3),
+                                  fontSize: Get.height * 0.02,
+                                  fontWeight: FontWeight.bold)),
+                        ),
                       ),
                     );
                   })),
