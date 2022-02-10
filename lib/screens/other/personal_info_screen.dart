@@ -57,6 +57,7 @@ class _PersonalInfoScreenState extends State<PersonalInfoScreen>
   @override
   void dispose() {
     super.dispose();
+    _rowAnimationController?.dispose();
     _animationController?.dispose();
   }
 
