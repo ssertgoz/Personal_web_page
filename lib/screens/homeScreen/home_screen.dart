@@ -60,9 +60,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    itemPositionsListener.itemPositions.addListener(() {
-      print("girdiiiiiiiiiiiii");
-    });
     return Scaffold(
       body: buildBody(),
     );
@@ -95,6 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ScrollablePositionedList.builder(
             //TODO burdaki sayıyı getx kullanarak otomatik olarak al
             itemScrollController: itemScrollController,
+            itemPositionsListener: itemPositionsListener,
             scrollDirection: Axis.vertical,
             //physics: const NeverScrollableScrollPhysics(),
             itemCount: 5,
@@ -138,6 +136,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: InkWell(
                             onTap: () {
                               setState(() {
+                                print(index);
                                 currenntScrollIndex = index;
                                 jumpTo(index);
                               });
