@@ -4,17 +4,12 @@ import 'package:get/get.dart';
 import 'package:personal_web_app/constants/colors.dart';
 import 'package:personal_web_app/extension.dart';
 import 'package:personal_web_app/responsive.dart';
+import 'package:personal_web_app/screens/other/education_screen.dart';
 import 'package:personal_web_app/screens/other/personal_info_screen.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
-
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
+// ignore: must_be_immutable
+class HomeScreen extends StatelessWidget {
   List<bool> onHower = [false, false, false, false, false];
   final ItemScrollController itemScrollController = ItemScrollController();
   final ItemPositionsListener itemPositionsListener =
@@ -22,10 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final List<Widget> screens = [
     const PersonalInfoScreen(),
-    Container(
-      height: Get.height,
-      width: Get.width,
-    ),
+    const EducationScreen(),
     Container(
       height: Get.height,
       width: Get.width,
@@ -57,6 +49,8 @@ class _HomeScreenState extends State<HomeScreen> {
   ];
 
   int currenntScrollIndex = 0;
+
+  HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -111,69 +105,69 @@ class _HomeScreenState extends State<HomeScreen> {
                 onPressed: null,
               ),
             )),
-        Container(
-            height: Get.height,
-            width: Get.width,
-            margin: EdgeInsets.only(
-              bottom: Get.width * 0.04,
-            ),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Container(
-                height: Get.height * 0.6,
-                decoration: BoxDecoration(
-                  color: customBlackColor.withOpacity(0.3),
-                  borderRadius: BorderRadius.only(
-                    bottomRight: Radius.circular(20),
-                    topRight: Radius.circular(20),
-                  ),
-                ),
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: List.generate(5, (index) {
-                      return Container(
-                        margin: EdgeInsets.all(10),
-                        child: InkWell(
-                            onTap: () {
-                              setState(() {
-                                print(index);
-                                currenntScrollIndex = index;
-                                jumpTo(index);
-                              });
-                            },
-                            onHover: (oh) {
-                              if (oh) {
-                                setState(() {
-                                  onHower[index] = true;
-                                });
-                              } else {
-                                setState(() {
-                                  onHower[index] = false;
-                                });
-                              }
-                            },
-                            child: Container(
-                              width: Get.width * 0.08,
-                              height: Get.height * 0.05,
-                              alignment: Alignment.center,
-                              //color: nawBarColorList[index],
-                              child: Text(nawBarTextList[index],
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      color: onHower[index] ||
-                                              currenntScrollIndex == index
-                                          ? customLightYellowColor
-                                              .withOpacity(1)
-                                          : customLightYellowColor
-                                              .withOpacity(0.3),
-                                      fontSize: Get.height * 0.02,
-                                      fontWeight: FontWeight.bold)),
-                            )),
-                      );
-                    })),
-              ),
-            )),
-        Container(
+        // Container(
+        //     height: Get.height,
+        //     width: Get.width,
+        //     margin: EdgeInsets.only(
+        //       bottom: Get.width * 0.04,
+        //     ),
+        //     child: Align(
+        //       alignment: Alignment.centerLeft,
+        //       child: Container(
+        //         height: Get.height * 0.6,
+        //         decoration: BoxDecoration(
+        //           color: customBlackColor.withOpacity(0.3),
+        //           borderRadius: BorderRadius.only(
+        //             bottomRight: Radius.circular(20),
+        //             topRight: Radius.circular(20),
+        //           ),
+        //         ),
+        //         child: Column(
+        //             mainAxisAlignment: MainAxisAlignment.center,
+        //             children: List.generate(5, (index) {
+        //               return Container(
+        //                 margin: EdgeInsets.all(10),
+        //                 child: InkWell(
+        //                     onTap: () {
+        //                       setState(() {
+        //                         print(index);
+        //                         currenntScrollIndex = index;
+        //                         jumpTo(index);
+        //                       });
+        //                     },
+        //                     onHover: (oh) {
+        //                       if (oh) {
+        //                         setState(() {
+        //                           onHower[index] = true;
+        //                         });
+        //                       } else {
+        //                         setState(() {
+        //                           onHower[index] = false;
+        //                         });
+        //                       }
+        //                     },
+        //                     child: Container(
+        //                       width: Get.width * 0.08,
+        //                       height: Get.height * 0.05,
+        //                       alignment: Alignment.center,
+        //                       //color: nawBarColorList[index],
+        //                       child: Text(nawBarTextList[index],
+        //                           textAlign: TextAlign.center,
+        //                           style: TextStyle(
+        //                               color: onHower[index] ||
+        //                                       currenntScrollIndex == index
+        //                                   ? customLightYellowColor
+        //                                       .withOpacity(1)
+        //                                   : customLightYellowColor
+        //                                       .withOpacity(0.3),
+        //                               fontSize: Get.height * 0.02,
+        //                               fontWeight: FontWeight.bold)),
+        //                     )),
+        //               );
+        //             })),
+        //       ),
+        //     )),
+        SizedBox(
           height: Get.height,
           width: Get.width,
           child: Align(

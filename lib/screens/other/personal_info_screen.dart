@@ -30,7 +30,7 @@ class _PersonalInfoScreenState extends State<PersonalInfoScreen>
         CurvedAnimation(curve: Curves.ease, parent: _animationController));
 
     _rowAnimationController = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 500));
+        vsync: this, duration: const Duration(milliseconds: 1000));
     _rowAnimation = Tween(begin: 30.0, end: 40.0).animate(
         CurvedAnimation(curve: Curves.ease, parent: _rowAnimationController));
 
@@ -63,8 +63,7 @@ class _PersonalInfoScreenState extends State<PersonalInfoScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 15),
+    return SizedBox(
       height: Get.height,
       width: Get.width,
       child: Stack(
@@ -149,29 +148,41 @@ class _PersonalInfoScreenState extends State<PersonalInfoScreen>
                         ),
                       ),
                       Container(
-                        height: Get.height * 0.07,
+                        height: Get.height * 2 * 0.07,
+                        width: Get.height * 2 * 0.07,
                         alignment: Alignment.center,
+                        decoration: const BoxDecoration(shape: BoxShape.circle),
                         child: AnimatedBuilder(
                             animation: _rowAnimation,
                             builder: (context, child) {
-                              return IconButton(
-                                  iconSize: _rowAnimation.value,
-                                  color: !animationFinished
-                                      ? customWhiteColor
-                                      : customBlackColor,
-                                  alignment: Alignment.center,
-                                  onPressed: () {
-                                    if (!animationFinished) {
-                                      _animationController.forward();
-                                    } else {
-                                      _animationController.reverse();
-                                    }
-                                  },
-                                  icon: Icon(
-                                    animationFinished
-                                        ? Icons.arrow_downward_sharp
-                                        : Icons.arrow_upward_sharp,
-                                  ));
+                              return Container(
+                                height:
+                                    Get.height * 3 * _rowAnimation.value / 1000,
+                                width:
+                                    Get.height * 3 * _rowAnimation.value / 1000,
+                                decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    border: Border.all(
+                                      color: Colors.white,
+                                      width: 2,
+                                    )),
+                                alignment: Alignment.center,
+                                child: IconButton(
+                                    color: customWhiteColor,
+                                    onPressed: () {
+                                      if (!animationFinished) {
+                                        _animationController.forward();
+                                      } else {
+                                        _animationController.reverse();
+                                      }
+                                    },
+                                    alignment: Alignment.center,
+                                    icon: Icon(
+                                      animationFinished
+                                          ? Icons.arrow_downward_sharp
+                                          : Icons.arrow_upward_sharp,
+                                    )),
+                              );
                             }),
                       ),
                       showText
@@ -179,9 +190,9 @@ class _PersonalInfoScreenState extends State<PersonalInfoScreen>
                               height: Get.height * 0.3,
                               width: Get.width * 0.5,
                               margin: EdgeInsets.only(top: Get.height * 0.08),
-                              padding: EdgeInsets.all(20),
+                              padding: const EdgeInsets.all(20),
                               // color: customBlackColor.withOpacity(0.5),
-                              child: Text(
+                              child: const Text(
                                 "In 2018, I started the Computer Engineering Department at Izmir Institute of Technology. I am now in the third grade and I have had the opportunity to develop software in various fields from robotic coding to image processing, from game production to mobile application construction. I'm developing myself in the fields mobile application, and I am actively working on mobile application development with Flutter.",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
