@@ -8,6 +8,8 @@ import 'package:personal_web_app/screens/other/education_screen.dart';
 import 'package:personal_web_app/screens/other/personal_info_screen.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
+import '../other/professional_skills_screen.dart';
+
 // ignore: must_be_immutable
 class HomeScreen extends StatelessWidget {
   List<bool> onHower = [false, false, false, false, false];
@@ -18,10 +20,7 @@ class HomeScreen extends StatelessWidget {
   final List<Widget> screens = [
     const PersonalInfoScreen(),
     const EducationScreen(),
-    Container(
-      height: Get.height,
-      width: Get.width,
-    ),
+    const ProfessionalSkillsScreen(),
     Container(
       height: Get.height,
       width: Get.width,
