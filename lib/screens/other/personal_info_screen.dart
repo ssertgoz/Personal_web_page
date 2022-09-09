@@ -63,14 +63,15 @@ class _PersonalInfoScreenState extends State<PersonalInfoScreen>
 
   @override
   Widget build(BuildContext context) {
+    var width = context.width;
+    var height = context.height;
     return SizedBox(
-      height: Get.height,
-      width: Get.width,
+      height: height,
+      width: width,
       child: Stack(
         alignment: Alignment.centerRight,
         children: [
-          Container(
-              height: Get.height, width: Get.width, color: customWhiteColor),
+          Container(height: height, width: width, color: customWhiteColor),
           Opacity(
             opacity: 1,
             child: Container(
@@ -80,18 +81,18 @@ class _PersonalInfoScreenState extends State<PersonalInfoScreen>
                       fit: BoxFit.cover,
                       image: AssetImage("assets/images/landscape.png")),
                   borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(Get.width),
-                    topRight: Radius.circular(Get.width),
+                    topLeft: Radius.circular(width),
+                    topRight: Radius.circular(width),
                   ),
                 ),
                 child: Container(
-                  height: Get.height,
-                  width: Get.width,
+                  height: height,
+                  width: width,
                   decoration: BoxDecoration(
                     color: customBlackColor.withOpacity(0.3),
                     borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(Get.width),
-                      topRight: Radius.circular(Get.width),
+                      topLeft: Radius.circular(width),
+                      topRight: Radius.circular(width),
                     ),
                   ),
                 )),
@@ -104,7 +105,7 @@ class _PersonalInfoScreenState extends State<PersonalInfoScreen>
                   return Column(
                     children: [
                       Container(
-                        margin: EdgeInsets.all(Get.height * 0.05),
+                        margin: EdgeInsets.all(height * 0.05),
                         decoration: BoxDecoration(
                             color: Colors.white.withOpacity(0.8),
                             shape: BoxShape.circle,
@@ -119,47 +120,45 @@ class _PersonalInfoScreenState extends State<PersonalInfoScreen>
                                 fit: BoxFit.fitWidth,
                                 image: AssetImage(
                                     "assets/images/profile_pic.png"))),
-                        height: Get.height * 0.1 * _animation.value,
-                        width: Get.height * 0.1 * _animation.value,
+                        height: height * 0.1 * _animation.value,
+                        width: height * 0.1 * _animation.value,
                         child: null,
                       ),
                       Container(
-                        height: Get.height * 0.1,
-                        width: Get.width * 0.3,
+                        height: height * 0.1,
+                        width: width * 0.3,
                         alignment: Alignment.center,
                         child: Text(
-                          "Serdar Sertöz",
+                          "Serdar Sertgöz",
                           style: TextStyle(
                               color: customWhiteColor,
-                              fontSize: Get.height * 0.09,
+                              fontSize: width * 0.03,
                               fontWeight: FontWeight.bold),
                         ),
                       ),
                       Container(
-                        height: Get.height * 0.05,
-                        width: Get.width * 0.3,
+                        height: height * 0.05,
+                        width: width * 0.3,
                         alignment: Alignment.center,
                         child: Text(
                           "Computer Engineer",
                           style: TextStyle(
                               color: customWhiteColor.withOpacity(0.6),
-                              fontSize: Get.height * 0.03,
+                              fontSize: height * 0.03,
                               fontWeight: FontWeight.bold),
                         ),
                       ),
                       Container(
-                        height: Get.height * 2 * 0.07,
-                        width: Get.height * 2 * 0.07,
+                        height: height * 2 * 0.07,
+                        width: height * 2 * 0.07,
                         alignment: Alignment.center,
                         decoration: const BoxDecoration(shape: BoxShape.circle),
                         child: AnimatedBuilder(
                             animation: _rowAnimation,
                             builder: (context, child) {
                               return Container(
-                                height:
-                                    Get.height * 3 * _rowAnimation.value / 1000,
-                                width:
-                                    Get.height * 3 * _rowAnimation.value / 1000,
+                                height: height * 3 * _rowAnimation.value / 1000,
+                                width: height * 3 * _rowAnimation.value / 1000,
                                 decoration: BoxDecoration(
                                     shape: BoxShape.circle,
                                     border: Border.all(
@@ -187,9 +186,9 @@ class _PersonalInfoScreenState extends State<PersonalInfoScreen>
                       ),
                       showText
                           ? Container(
-                              height: Get.height * 0.3,
-                              width: Get.width * 0.5,
-                              margin: EdgeInsets.only(top: Get.height * 0.08),
+                              height: height * 0.3,
+                              width: width * 0.5,
+                              margin: EdgeInsets.only(top: height * 0.08),
                               padding: const EdgeInsets.all(20),
                               // color: customBlackColor.withOpacity(0.5),
                               child: const Text(

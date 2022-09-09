@@ -219,29 +219,45 @@ class _ProfessionalSkillsScreenState extends State<ProfessionalSkillsScreen>
 
   @override
   Widget build(BuildContext context) {
+    var width = context.width;
+    var height = context.height;
     return SizedBox(
-      height: Get.height,
-      width: Get.width,
+      height: height,
+      width: width,
       child: Stack(
         alignment: Alignment.centerRight,
         children: [
           Container(
-              height: Get.height, width: Get.width, color: customWhiteColor),
-          RotatedBox(
-            quarterTurns: 2,
-            child: Transform(
-              alignment: Alignment.center,
-              transform: Matrix4.rotationY(math.pi),
-              child: Container(
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                        fit: BoxFit.fitWidth,
-                        image:
-                            AssetImage("assets/images/professionalSkills.png")),
-                  ),
-                  child: null),
+            height: height,
+            width: width,
+            decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                  Color.fromRGBO(255, 255, 255, 1),
+                  customWhiteColor,
+                ])),
+            child: const Opacity(
+              opacity: 0.5,
+              child: Image(
+                image: AssetImage("assets/images/13038.jpg"),
+              ),
             ),
           ),
+          // Container(
+          //   height: height,
+          //   width: width,
+          //   decoration: BoxDecoration(
+          //       color: Color.fromRGBO(255, 255, 255, 1),
+          //       gradient: LinearGradient(
+          //         stops: [0.3, 0.8],
+          //         colors: [
+          //           Colors.transparent,
+          //           Color.fromRGBO(255, 255, 255, 1)
+          //         ],
+          //       )),
+          // ),
           Align(
             alignment: Alignment.topCenter,
             child: AnimatedBuilder(
@@ -250,306 +266,36 @@ class _ProfessionalSkillsScreenState extends State<ProfessionalSkillsScreen>
                   return Column(
                     children: [
                       Container(
-                        margin: EdgeInsets.only(top: Get.height * 0.1),
-                        height: Get.height * 0.1,
-                        width: Get.width * 0.35,
+                        margin: EdgeInsets.only(top: height * 0.1),
+                        height: height * 0.1,
+                        width: width * 0.8,
                         alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                                begin: Alignment.centerLeft,
-                                end: Alignment.centerRight,
-                                colors: [
-                              Colors.amber.withOpacity(0.0),
-                              Colors.amber.withOpacity(0.3),
-                              Colors.amber.withOpacity(0.0)
-                            ])),
-                        child: Text(
-                          "PROFESSIONAL SKILLS",
-                          style: TextStyle(
-                              color: customDarkBlueColor,
-                              fontSize: Get.width * 0.03,
-                              fontWeight: FontWeight.bold),
+                        child: FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: Text(
+                            "PROFESSIONAL SKILLS",
+                            style: TextStyle(
+                                color: customBlackColor,
+                                fontSize: width * 0.04,
+                                fontWeight: FontWeight.bold),
+                          ),
                         ),
                       ),
                       Container(
                           height: 1,
-                          width: Get.width * 0.35,
-                          margin: EdgeInsets.all(Get.width * 0.01),
-                          color: customDarkBlueColor),
+                          width: width * 0.5,
+                          margin: EdgeInsets.all(width * 0.01),
+                          color: customBlackColor),
                       SizedBox(
                         height: Get.height * 0.1,
                       ),
                       Expanded(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Expanded(
-                                child: Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.amber.withOpacity(0.8),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color:
-                                          customDarkBlueColor.withOpacity(0.2),
-                                      spreadRadius: 5,
-                                      blurRadius: 7,
-                                      offset: Offset(
-                                          0, 3), // changes position of shadow
-                                    ),
-                                  ]),
-                              margin: EdgeInsets.all(Get.width * 0.01),
-                              child: Column(
-                                children: [
-                                  Container(
-                                    alignment: Alignment.center,
-                                    child: Text(
-                                      "MOBIL",
-                                      style: TextStyle(
-                                          color: customDarkBlueColor,
-                                          fontSize: Get.width * 0.02,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                                  Container(
-                                      height: 1,
-                                      margin: EdgeInsets.all(Get.width * 0.01),
-                                      color: customDarkBlueColor),
-                                  Expanded(
-                                    child: ListView(
-                                      padding: EdgeInsets.only(
-                                          left: Get.width * 0.04),
-                                      children: [
-                                        Text(
-                                          "- Flutter, Dart",
-                                          style: TextStyle(
-                                            color: customDarkBlueColor,
-                                            fontSize: Get.width * 0.015,
-                                          ),
-                                        ),
-                                        Text(
-                                          "- React Native",
-                                          style: TextStyle(
-                                            color: customDarkBlueColor,
-                                            fontSize: Get.width * 0.015,
-                                          ),
-                                        ),
-                                        Text(
-                                          "- Kotlin",
-                                          style: TextStyle(
-                                            color: customDarkBlueColor,
-                                            fontSize: Get.width * 0.015,
-                                          ),
-                                        ),
-                                        Text(
-                                          "- Swift",
-                                          style: TextStyle(
-                                            color: customDarkBlueColor,
-                                            fontSize: Get.width * 0.015,
-                                          ),
-                                        ),
-                                        Text(
-                                          "- Rest API integration",
-                                          style: TextStyle(
-                                            color: customDarkBlueColor,
-                                            fontSize: Get.width * 0.015,
-                                          ),
-                                        ),
-                                        Text(
-                                          "- Web socket",
-                                          style: TextStyle(
-                                            color: customDarkBlueColor,
-                                            fontSize: Get.width * 0.015,
-                                          ),
-                                        ),
-                                        Text(
-                                          "- App distribution on App store \n  and Google Play Store",
-                                          style: TextStyle(
-                                            color: customDarkBlueColor,
-                                            fontSize: Get.width * 0.015,
-                                          ),
-                                        ),
-                                        Text(
-                                          "- SQFLite",
-                                          style: TextStyle(
-                                            color: customDarkBlueColor,
-                                            fontSize: Get.width * 0.015,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  )
-                                ],
-                              ),
-                            )),
-                            Expanded(
-                                child: Container(
-                              margin: EdgeInsets.all(Get.width * 0.01),
-                              decoration: BoxDecoration(
-                                  color: Colors.amber.withOpacity(0.8),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color:
-                                          customDarkBlueColor.withOpacity(0.2),
-                                      spreadRadius: 5,
-                                      blurRadius: 7,
-                                      offset: const Offset(
-                                          0, 3), // changes position of shadow
-                                    ),
-                                  ]),
-                              child: Column(
-                                children: [
-                                  Container(
-                                    alignment: Alignment.center,
-                                    child: Text(
-                                      "WEB",
-                                      style: TextStyle(
-                                          color: customDarkBlueColor,
-                                          fontSize: Get.width * 0.02,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                                  Container(
-                                      height: 1,
-                                      margin: EdgeInsets.all(Get.width * 0.01),
-                                      color: customDarkBlueColor),
-                                  Expanded(
-                                    child: ListView(
-                                      padding: EdgeInsets.only(
-                                          left: Get.width * 0.04),
-                                      children: [
-                                        Text(
-                                          "- HTML, CSS, JavaScript",
-                                          style: TextStyle(
-                                            color: customDarkBlueColor,
-                                            fontSize: Get.width * 0.015,
-                                          ),
-                                        ),
-                                        Text(
-                                          "- Bootstrap,",
-                                          style: TextStyle(
-                                            color: customDarkBlueColor,
-                                            fontSize: Get.width * 0.015,
-                                          ),
-                                        ),
-                                        Text(
-                                          "- PHP",
-                                          style: TextStyle(
-                                            color: customDarkBlueColor,
-                                            fontSize: Get.width * 0.015,
-                                          ),
-                                        ),
-                                        Text(
-                                          "- C#",
-                                          style: TextStyle(
-                                            color: customDarkBlueColor,
-                                            fontSize: Get.width * 0.015,
-                                          ),
-                                        ),
-                                        Text(
-                                          "- ASP.NET",
-                                          style: TextStyle(
-                                            color: customDarkBlueColor,
-                                            fontSize: Get.width * 0.015,
-                                          ),
-                                        ),
-                                        Text(
-                                          "- MVC",
-                                          style: TextStyle(
-                                            color: customDarkBlueColor,
-                                            fontSize: Get.width * 0.015,
-                                          ),
-                                        ),
-                                        Text(
-                                          "- MSSQL",
-                                          style: TextStyle(
-                                            color: customDarkBlueColor,
-                                            fontSize: Get.width * 0.015,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  )
-                                ],
-                              ),
-                            )),
-                            Expanded(
-                                child: Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.amber.withOpacity(0.8),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color:
-                                          customDarkBlueColor.withOpacity(0.2),
-                                      spreadRadius: 5,
-                                      blurRadius: 7,
-                                      offset: const Offset(
-                                          0, 3), // changes position of shadow
-                                    ),
-                                  ]),
-                              margin: EdgeInsets.all(Get.width * 0.01),
-                              child: Column(
-                                children: [
-                                  Container(
-                                    alignment: Alignment.center,
-                                    child: Text(
-                                      "OTHERS",
-                                      style: TextStyle(
-                                          color: customDarkBlueColor,
-                                          fontSize: Get.width * 0.02,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                                  Container(
-                                      height: 1,
-                                      margin: EdgeInsets.all(Get.width * 0.01),
-                                      color: customDarkBlueColor),
-                                  Expanded(
-                                    child: ListView(
-                                      padding: EdgeInsets.only(
-                                          left: Get.width * 0.04),
-                                      children: [
-                                        Text(
-                                          "- Python, Image Processing",
-                                          style: TextStyle(
-                                            color: customDarkBlueColor,
-                                            fontSize: Get.width * 0.015,
-                                          ),
-                                        ),
-                                        Text(
-                                          "- Java",
-                                          style: TextStyle(
-                                            color: customDarkBlueColor,
-                                            fontSize: Get.width * 0.015,
-                                          ),
-                                        ),
-                                        Text(
-                                          "- Unity Game Development",
-                                          style: TextStyle(
-                                            color: customDarkBlueColor,
-                                            fontSize: Get.width * 0.015,
-                                          ),
-                                        ),
-                                        Text(
-                                          "- Azure",
-                                          style: TextStyle(
-                                            color: customDarkBlueColor,
-                                            fontSize: Get.width * 0.015,
-                                          ),
-                                        ),
-                                        Text(
-                                          "- Scrum",
-                                          style: TextStyle(
-                                            color: customDarkBlueColor,
-                                            fontSize: Get.width * 0.015,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  )
-                                ],
-                              ),
-                            )),
-                          ],
+                        child: Container(
+                          width: width * 0.8,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [getMobil(), getWeb(), getOthers()],
+                          ),
                         ),
                       ),
                     ],
@@ -559,5 +305,277 @@ class _ProfessionalSkillsScreenState extends State<ProfessionalSkillsScreen>
         ],
       ),
     );
+  }
+
+  getOthers() {
+    var width = context.width;
+    var height = context.height;
+    return Expanded(
+        child: Container(
+      decoration:
+          BoxDecoration(color: Color.fromRGBO(125, 125, 165, 0.8), boxShadow: [
+        BoxShadow(
+          color: customBlackColor.withOpacity(0.2),
+          spreadRadius: 5,
+          blurRadius: 7,
+          offset: const Offset(0, 3), // changes position of shadow
+        ),
+      ]),
+      margin: EdgeInsets.all(width * 0.01),
+      child: Column(
+        children: [
+          Container(
+            alignment: Alignment.center,
+            margin: EdgeInsets.only(top: width * 0.01),
+            child: Text(
+              "OTHERS",
+              style: TextStyle(
+                  color: customDarkBlueColor,
+                  fontSize: width * 0.02,
+                  fontWeight: FontWeight.bold),
+            ),
+          ),
+          Container(
+              height: 1,
+              margin: EdgeInsets.all(width * 0.01),
+              color: customDarkBlueColor),
+          Expanded(
+            child: ListView(
+              padding: EdgeInsets.only(left: width * 0.04),
+              children: [
+                Text(
+                  "- Python, Image Processing",
+                  style: TextStyle(
+                    color: customDarkBlueColor,
+                    fontSize: width * 0.015,
+                  ),
+                ),
+                Text(
+                  "- Java",
+                  style: TextStyle(
+                    color: customDarkBlueColor,
+                    fontSize: width * 0.015,
+                  ),
+                ),
+                Text(
+                  "- Unity Game Development",
+                  style: TextStyle(
+                    color: customDarkBlueColor,
+                    fontSize: Get.width * 0.015,
+                  ),
+                ),
+                Text(
+                  "- Azure",
+                  style: TextStyle(
+                    color: customDarkBlueColor,
+                    fontSize: Get.width * 0.015,
+                  ),
+                ),
+                Text(
+                  "- Scrum",
+                  style: TextStyle(
+                    color: customDarkBlueColor,
+                    fontSize: Get.width * 0.015,
+                  ),
+                ),
+              ],
+            ),
+          )
+        ],
+      ),
+    ));
+  }
+
+  getWeb() {
+    var width = context.width;
+    var height = context.height;
+    return Expanded(
+        child: Container(
+      margin: EdgeInsets.all(width * 0.01),
+      decoration:
+          BoxDecoration(color: Color.fromRGBO(125, 125, 165, 0.8), boxShadow: [
+        BoxShadow(
+          color: customBlackColor.withOpacity(0.2),
+          spreadRadius: 5,
+          blurRadius: 7,
+          offset: const Offset(0, 3), // changes position of shadow
+        ),
+      ]),
+      child: Column(
+        children: [
+          Container(
+            alignment: Alignment.center,
+            margin: EdgeInsets.only(top: width * 0.01),
+            child: Text(
+              "WEB",
+              style: TextStyle(
+                  color: customDarkBlueColor,
+                  fontSize: width * 0.02,
+                  fontWeight: FontWeight.bold),
+            ),
+          ),
+          Container(
+              height: 1,
+              margin: EdgeInsets.all(width * 0.01),
+              color: customDarkBlueColor),
+          Expanded(
+            child: ListView(
+              padding: EdgeInsets.only(left: width * 0.04),
+              children: [
+                Text(
+                  "- HTML, CSS, JavaScript",
+                  style: TextStyle(
+                    color: customDarkBlueColor,
+                    fontSize: width * 0.015,
+                  ),
+                ),
+                Text(
+                  "- Bootstrap,",
+                  style: TextStyle(
+                    color: customDarkBlueColor,
+                    fontSize: width * 0.015,
+                  ),
+                ),
+                Text(
+                  "- PHP",
+                  style: TextStyle(
+                    color: customDarkBlueColor,
+                    fontSize: width * 0.015,
+                  ),
+                ),
+                Text(
+                  "- C#",
+                  style: TextStyle(
+                    color: customDarkBlueColor,
+                    fontSize: width * 0.015,
+                  ),
+                ),
+                Text(
+                  "- ASP.NET",
+                  style: TextStyle(
+                    color: customDarkBlueColor,
+                    fontSize: width * 0.015,
+                  ),
+                ),
+                Text(
+                  "- MVC",
+                  style: TextStyle(
+                    color: customDarkBlueColor,
+                    fontSize: width * 0.015,
+                  ),
+                ),
+                Text(
+                  "- MSSQL",
+                  style: TextStyle(
+                    color: customDarkBlueColor,
+                    fontSize: width * 0.015,
+                  ),
+                ),
+              ],
+            ),
+          )
+        ],
+      ),
+    ));
+  }
+
+  getMobil() {
+    var width = context.width;
+    var height = context.height;
+    return Expanded(
+        child: Container(
+      decoration:
+          BoxDecoration(color: Color.fromRGBO(125, 125, 165, 0.8), boxShadow: [
+        BoxShadow(
+          color: customBlackColor.withOpacity(0.2),
+          spreadRadius: 5,
+          blurRadius: 7,
+          offset: Offset(0, 3), // changes position of shadow
+        ),
+      ]),
+      margin: EdgeInsets.all(width * 0.01),
+      child: Column(
+        children: [
+          Container(
+            alignment: Alignment.center,
+            margin: EdgeInsets.only(top: width * 0.01),
+            child: Text(
+              "MOBIL",
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: width * 0.02,
+                  fontWeight: FontWeight.bold),
+            ),
+          ),
+          Container(
+              height: 1,
+              margin: EdgeInsets.all(width * 0.01),
+              color: customDarkBlueColor),
+          Expanded(
+            child: ListView(
+              padding: EdgeInsets.only(left: width * 0.04),
+              children: [
+                Text(
+                  "- Flutter, Dart",
+                  style: TextStyle(
+                    color: customDarkBlueColor,
+                    fontSize: width * 0.015,
+                  ),
+                ),
+                Text(
+                  "- React Native",
+                  style: TextStyle(
+                    color: customDarkBlueColor,
+                    fontSize: width * 0.015,
+                  ),
+                ),
+                Text(
+                  "- Kotlin",
+                  style: TextStyle(
+                    color: customDarkBlueColor,
+                    fontSize: width * 0.015,
+                  ),
+                ),
+                Text(
+                  "- Swift",
+                  style: TextStyle(
+                    color: customDarkBlueColor,
+                    fontSize: width * 0.015,
+                  ),
+                ),
+                Text(
+                  "- Rest API integration",
+                  style: TextStyle(
+                    color: customDarkBlueColor,
+                    fontSize: width * 0.015,
+                  ),
+                ),
+                Text(
+                  "- Web socket",
+                  style: TextStyle(
+                    color: customDarkBlueColor,
+                    fontSize: width * 0.015,
+                  ),
+                ),
+                Text(
+                  "- App distribution on App store \n  and Google Play Store",
+                  style: TextStyle(
+                    color: customDarkBlueColor,
+                    fontSize: width * 0.015,
+                  ),
+                ),
+                Text(
+                  "- SQFLite",
+                  style: TextStyle(
+                    color: customDarkBlueColor,
+                    fontSize: width * 0.015,
+                  ),
+                ),
+              ],
+            ),
+          )
+        ],
+      ),
+    ));
   }
 }

@@ -1,3 +1,5 @@
+import 'dart:js';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
@@ -5,6 +7,7 @@ import 'package:personal_web_app/constants/colors.dart';
 import 'package:personal_web_app/extension.dart';
 import 'package:personal_web_app/responsive.dart';
 import 'package:personal_web_app/screens/other/education_screen.dart';
+import 'package:personal_web_app/screens/other/experience_screen.dart';
 import 'package:personal_web_app/screens/other/personal_info_screen.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
@@ -21,13 +24,13 @@ class HomeScreen extends StatelessWidget {
     const PersonalInfoScreen(),
     const EducationScreen(),
     const ProfessionalSkillsScreen(),
+    const ExperiencesScreen(),
     Container(
       height: Get.height,
       width: Get.width,
-    ),
-    Container(
-      height: Get.height,
-      width: Get.width,
+      child: const Center(
+        child: Text("Coming soon"),
+      ),
     )
   ];
 
@@ -54,7 +57,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: buildBody(),
+      body: buildBody(context),
     );
   }
 
@@ -65,7 +68,7 @@ class HomeScreen extends StatelessWidget {
         curve: Curves.easeInOutCubic);
   }
 
-  Widget buildBody() {
+  Widget buildBody(context) {
     return Stack(
       children: [
         Responsive(
@@ -73,13 +76,15 @@ class HomeScreen extends StatelessWidget {
           tablet: Container(
             color: Colors.red,
           ),
-          desktop: desktopView(),
+          desktop: desktopView(context),
         ),
       ],
     );
   }
 
-  Widget desktopView() {
+  Widget desktopView(BuildContext context) {
+    var width = context.width;
+    var height = context.height;
     return Stack(
       children: [
         ScrollablePositionedList.builder(
@@ -93,14 +98,13 @@ class HomeScreen extends StatelessWidget {
               return screens[scrollIndex];
             }),
         Container(
-            height: Get.height,
-            width: Get.width,
-            margin:
-                EdgeInsets.only(top: Get.width * 0.02, right: Get.width * 0.03),
+            height: height,
+            width: width,
+            margin: EdgeInsets.only(top: width * 0.02, right: width * 0.03),
             child: Align(
               alignment: Alignment.topRight,
               child: IconButton(
-                icon: Icon(Icons.language_outlined, size: Get.width * 0.03),
+                icon: Icon(Icons.language_outlined, size: width * 0.03),
                 onPressed: null,
               ),
             )),
@@ -167,19 +171,19 @@ class HomeScreen extends StatelessWidget {
         //       ),
         //     )),
         SizedBox(
-          height: Get.height,
-          width: Get.width,
+          height: height,
+          width: width,
           child: Align(
             alignment: Alignment.topLeft,
             child: Container(
-              margin: EdgeInsets.all(Get.width * 0.02),
+              margin: EdgeInsets.all(width * 0.02),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Image(
                     image: const AssetImage("assets/images/flutter_logo.png"),
-                    height: Get.height * 0.05,
-                    width: Get.width * 0.05,
+                    height: height * 0.05,
+                    width: width * 0.05,
                   )
                 ],
               ),

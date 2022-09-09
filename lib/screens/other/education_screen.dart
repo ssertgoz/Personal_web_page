@@ -218,29 +218,33 @@ class _EducationScreenState extends State<EducationScreen>
 
   @override
   Widget build(BuildContext context) {
+    var width = context.width;
+    var height = context.height;
     return SizedBox(
-      height: Get.height,
-      width: Get.width,
+      height: height,
+      width: width,
       child: Stack(
         alignment: Alignment.centerRight,
         children: [
           Container(
-              height: Get.height, width: Get.width, color: customWhiteColor),
+              height: height,
+              width: width,
+              color: Color.fromRGBO(255, 255, 255, 1)),
           RotatedBox(
             quarterTurns: 2,
             child: Transform(
               alignment: Alignment.center,
               transform: Matrix4.rotationY(math.pi),
               child: Container(
-                  decoration: BoxDecoration(
-                    image: const DecorationImage(
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
                         fit: BoxFit.cover,
                         image:
                             AssetImage("assets/images/landscape_gradient.png")),
                   ),
                   child: Container(
-                    height: Get.height,
-                    width: Get.width,
+                    height: height,
+                    width: width,
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         begin: Alignment.topCenter,
@@ -262,22 +266,22 @@ class _EducationScreenState extends State<EducationScreen>
                   return Column(
                     children: [
                       Container(
-                        margin: EdgeInsets.only(top: Get.height * 0.1),
-                        height: Get.height * 0.1,
-                        width: Get.width * 0.3,
+                        margin: EdgeInsets.only(top: height * 0.1),
+                        height: height * 0.1,
+                        width: width * 0.3,
                         alignment: Alignment.center,
                         child: Text(
                           "EDUCATION",
                           style: TextStyle(
                               color: customWhiteColor,
-                              fontSize: Get.width * 0.05,
+                              fontSize: width * 0.05,
                               fontWeight: FontWeight.bold),
                         ),
                       ),
                       Container(
                           height: 1,
-                          width: Get.width * 0.35,
-                          margin: EdgeInsets.all(Get.width * 0.02),
+                          width: width * 0.35,
+                          margin: EdgeInsets.all(width * 0.02),
                           color: customWhiteColor),
                       Expanded(
                         child: Row(
